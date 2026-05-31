@@ -929,14 +929,14 @@
 		options: [
 		  "Số hóa",
 		  "Dữ liệu",
-		  "Công nghệ",
-		  "Con người & Tổ chức",
 		  "Truyền thông",
 		  "Bán hàng",
 		  "Sản phẩm",
-		  "Kiểm tra"
+		  "Công nghệ",
+		  "Kiểm tra",
+		  "Con người & Tổ chức"
 		],
-		correct: [0, 1, 2, 3],
+		correct: [0, 1, 5, 7],
 		revealText: "Số hóa, Dữ liệu, Công nghệ, Con người & Tổ chức",
 		revealIcons: ["🚀", "⚡", "💡", "🌐"]
 	  },
@@ -960,17 +960,17 @@
 		question: "Đâu là 5 giá trị cốt lõi của VietinBank?",
 		options: [
 		  "Chính trực",
+		  "Bền bỉ",
 		  "Trí tuệ",
 		  "Tận tâm",
-		  "Thấu cảm",
-		  "Thích ứng",
 		  "Tốc độ",
 		  "Dẫn đầu",
-		  "Bền bỉ",
 		  "Kỷ luật",
-		  "May mắn"
+		  "May mắn",
+		  "Thấu cảm",
+		  "Thích ứng",
 		],
-		correct: [0, 1, 2, 3, 4],
+		correct: [0, 2, 3, 8, 9],
 		revealText: "Chính trực, Trí tuệ, Tận tâm, Thấu cảm, Thích ứng",
 		revealIcons: ["⭐", "✨", "🌟", "💫"]
 	  },
@@ -1004,12 +1004,12 @@
 		question: "Đâu là những việc KHÔNG nên làm để tránh rủi ro trong công việc?",
 		options: [
 		  "Cho người khác mượn tài khoản/mật khẩu",
+		  "Khóa màn hình máy tính khi rời khỏi chỗ ngồi",
 		  "Ghi mật khẩu ra giấy note hoặc nơi dễ nhìn thấy",
 		  "Gửi thông tin khách hàng qua email cá nhân khi chưa được phê duyệt",
-		  "Vứt tài liệu nội bộ mà không tiêu hủy đúng quy định",
-		  "Khóa màn hình máy tính khi rời khỏi chỗ ngồi"
+		  "Vứt tài liệu nội bộ mà không tiêu hủy đúng quy định"
 		],
-		correct: [0, 1, 2, 3],
+		correct: [0, 2, 3, 4],
 		revealText: "Cho mượn tài khoản/mật khẩu; ghi mật khẩu ra giấy note; gửi thông tin KH qua email cá nhân; vứt tài liệu nội bộ không đúng quy định",
 		revealIcons: ["⚠️", "🚨", "🛡️", "🔐"]
 	  },
@@ -1095,6 +1095,7 @@
       return {
         phase: "lobby",
         questionIndex: 0,
+        timeLimitSeconds: CONFIG.timeLimitSeconds,
         starStartedAt: null,
         starEndsAt: null,
         questionStartedAt: null,
@@ -1286,7 +1287,7 @@
           await gameRef.update({
             phase: "question",
             questionStartedAt: startAt,
-            questionEndsAt: startAt + CONFIG.timeLimitSeconds * 1000,
+            questionEndsAt: startAt + (live.timeLimitSeconds || CONFIG.timeLimitSeconds) * 1000,
             updatedAt: startAt
           });
         }
@@ -1885,7 +1886,7 @@
             ${brandHeader(`<span class="pill">Admin</span>`)}
             <h1>Điều khiển trò chơi</h1>
             <p class="subtitle">
-              Admin bấm bắt đầu/câu tiếp theo. Người chơi chọn Ngôi sao hi vọng trong 5 giây, sau đó câu hỏi tự chạy 20 giây.
+              Admin bấm bắt đầu/câu tiếp theo. Người chơi chọn Ngôi sao hi vọng trong 5 giây, sau đó câu hỏi tự chạy ${game.timeLimitSeconds || CONFIG.timeLimitSeconds} giây.
             </p>
 
             <div class="stat-grid">
@@ -1926,6 +1927,25 @@
             ${game.phase === "answer" ? `
               <h3>Đáp án câu ${game.questionIndex + 1}</h3>
               ${renderReveal(q)}
+            ` : ""}
+
+            ${(game.phase === "lobby" || game.phase === "answer") ? `
+              <div style="margin:14px 0 0;">
+                <label style="font-weight:850;color:var(--navy);font-size:14px;display:block;margin-bottom:6px;">
+                  Thời gian mỗi câu (giây)
+                </label>
+                <div style="display:flex;gap:10px;align-items:center;">
+                  <input
+                    id="timeLimitInput"
+                    type="number"
+                    min="5"
+                    max="120"
+                    value="${game.timeLimitSeconds || CONFIG.timeLimitSeconds}"
+                    style="width:90px;"
+                  />
+                  <button class="btn ghost" onclick="updateTimeLimitSeconds()">Lưu</button>
+                </div>
+              </div>
             ` : ""}
 
             <div class="actions">
@@ -2174,6 +2194,16 @@
       `;
     }
 
+    async function updateTimeLimitSeconds() {
+      const input = document.getElementById("timeLimitInput");
+      const val = parseInt(input?.value, 10);
+      if (!val || val < 5 || val > 120) {
+        alert("Vui lòng nhập số giây hợp lệ (5–120).");
+        return;
+      }
+      await roomRef.child("game").update({ timeLimitSeconds: val });
+    }
+
     window.joinGame = joinGame;
     window.setStarChoice = setStarChoice;
     window.toggleOption = toggleOption;
@@ -2184,6 +2214,7 @@
     window.finishGame = finishGame;
     window.resetRoom = resetRoom;
     window.backToLobby = backToLobby;
+    window.updateTimeLimitSeconds = updateTimeLimitSeconds;
   </script>
 </body>
 </html>
