@@ -890,141 +890,144 @@
      * 2. CÂU HỎI
      ************************************************************/
     const QUESTIONS = [
-      {
-        type: "single",
-        effect: "celebrate",
-        question: "Ngân hàng TMCP Công Thương Việt Nam được thành lập vào ngày nào?",
-        options: ["26/03/1988", "08/07/1988", "16/07/2009", "01/01/1990"],
-        correct: [1],
-        revealText: "08/07/1988",
-        revealIcons: ["🎉", "✨", "🎊", "🌟"]
-      },
-      {
-        type: "single",
-        effect: "salary",
-        question: "CBNV VietinBank nhận lương vào những ngày nào hằng tháng?",
-        options: ["Ngày 01 và 15", "Ngày 05 và 20", "Ngày 10 và 25", "Cuối tháng một lần"],
-        correct: [1],
-        revealText: "Ngày 05 và 20",
-        revealIcons: ["💸", "🪙", "💰", "✨"]
-      },
-      {
-        type: "single",
-        effect: "birthday",
-        question: "Đến sinh nhật, CBNV VietinBank được hưởng quyền lợi nào?",
-        options: [
-          "Nghỉ 01 ngày hưởng nguyên lương và nhận 500.000đ từ Công đoàn",
-          "Được nghỉ 10 ngày liên tiếp",
-          "Được tự chọn tăng lương trong tháng sinh nhật",
-          "Được miễn toàn bộ KPI trong tháng sinh nhật"
-        ],
-        correct: [0],
-        revealText: "Nghỉ 01 ngày hưởng nguyên lương và nhận 500.000đ từ Công đoàn",
-        revealIcons: ["🎁", "🎂", "🎈", "✨"]
-      },
-      {
-        type: "single",
-        effect: "women",
-        question: "Quyền lợi dịp 8/3 dành cho CBNV VietinBank là gì?",
-        options: [
-          "Nam 1.000.000đ; Nữ 2.000.000đ",
-          "Nam 2.000.000đ; Nữ 4.000.000đ",
-          "Nam 4.000.000đ; Nữ 2.000.000đ",
-          "Tất cả CBNV đều nhận 500.000đ"
-        ],
-        correct: [1],
-        revealText: "Nam 2.000.000đ; Nữ 4.000.000đ",
-        revealIcons: ["🎁", "🌷", "✨", "🎊"]
-      },
-      {
-        type: "single",
-        effect: "health",
-        question: "Quyền lợi nào giúp CBNV yên tâm hơn khi chăm sóc sức khỏe?",
-        options: [
-          "Khám sức khỏe định kỳ hằng năm và Bảo hiểm VietinBank Insurance",
-          "Được miễn mọi deadline khi thấy mệt",
-          "Tự kê đơn thuốc cho cả phòng",
-          "Nghỉ ốm không cần thông báo"
-        ],
-        correct: [0],
-        revealText: "Khám sức khỏe định kỳ hằng năm và Bảo hiểm VietinBank Insurance",
-        revealIcons: ["🛡️", "💙", "🏥", "✨"]
-      },
-      {
-        type: "multi",
-        effect: "values",
-        question: "Đâu là 5 giá trị cốt lõi của VietinBank?",
-        options: [
-          "Chính trực",
-          "Trí tuệ",
-          "Tận tâm",
-          "Thấu cảm",
-          "Thích ứng",
-          "Tốc độ",
-          "Dẫn đầu",
-          "Bền bỉ",
-          "Kỷ luật",
-          "May mắn"
-        ],
-        correct: [0, 1, 2, 3, 4],
-        revealText: "Chính trực, Trí tuệ, Tận tâm, Thấu cảm, Thích ứng",
-        revealIcons: ["⭐", "✨", "🌟", "💫"]
-      },
-      {
-        type: "single",
-        effect: "logo",
-        question: "Biểu tượng trong logo VietinBank gợi hình ảnh nào sau đây?",
-        options: ["Hình trái đất", "Hình quả bóng", "Hình đồng xu", "Hình mặt trời"],
-        correct: [2],
-        revealText: "Hình đồng xu",
-        revealIcons: ["🪙", "✨", "🔵", "🔴"]
-      },
-      {
-        type: "single",
-        effect: "portal",
-        question: "Khi cần tra cứu các văn bản/chính sách nội bộ của VietinBank, newbie nên vào trang nào?",
-        options: [
-          "http://VietinBank-ps – Trang quản lý thông tin nhân sự",
-          "http://intranet.vietinbank.vn – Cổng thông tin nội bộ VietinBank",
-          "http://kpi.vietinbank.vn – Chương trình đánh giá cán bộ theo KPI",
-          "http://www.vietinbank.edu.vn – Đào tạo trực tuyến"
-        ],
-        correct: [1],
-        revealText: "http://intranet.vietinbank.vn",
-        revealNote: "Admin có thể giới thiệu nhanh: VietinBank-ps dùng cho thông tin nhân sự; KPI dùng cho đánh giá cán bộ; VietinBank Edu dùng cho đào tạo trực tuyến.",
-        revealIcons: ["🔎", "🌐", "✨", "📌"]
-      },
-      {
-        type: "multi",
-        effect: "risk",
-        question: "Đâu là những việc KHÔNG nên làm để tránh rủi ro trong công việc?",
-        options: [
-          "Cho người khác mượn tài khoản/mật khẩu",
-          "Ghi mật khẩu ra giấy note hoặc nơi dễ nhìn thấy",
-          "Gửi thông tin khách hàng qua email cá nhân khi chưa được phê duyệt",
-          "Vứt tài liệu nội bộ mà không tiêu hủy đúng quy định",
-          "Khóa màn hình máy tính khi rời khỏi chỗ ngồi"
-        ],
-        correct: [0, 1, 2, 3],
-        revealText: "Cho mượn tài khoản/mật khẩu; ghi mật khẩu ra giấy note; gửi thông tin KH qua email cá nhân; vứt tài liệu nội bộ không đúng quy định",
-        revealIcons: ["⚠️", "🚨", "🛡️", "🔐"]
-      },
-      {
-        type: "multi",
-        effect: "final",
-        question: "Newbie muốn hòa nhập nhanh tại VietinBank thì nên chủ động làm gì?",
-        options: [
-          "Tham gia đầy đủ onboarding/đào tạo",
-          "Chủ động kết nối với quản lý, buddy, đồng nghiệp",
-          "Tìm hiểu chính sách, quy trình, văn hóa làm việc",
-          "Hỏi khi chưa rõ, không tự xử lý theo cảm tính",
-          "Im lặng 6 tháng đầu để giữ hình tượng bí ẩn"
-        ],
-        correct: [0, 1, 2, 3],
-        revealText: "Tham gia đào tạo; kết nối với quản lý/buddy/đồng nghiệp; tìm hiểu chính sách/quy trình; hỏi khi chưa rõ",
-        revealIcons: ["🏁", "🎉", "⭐", "✨"]
-      }
-    ];
+	  {
+		type: "single",
+		effect: "celebrate",
+		question: "VietinBank kỷ niệm ngày thành lập vào ngày nào?",
+		options: ["26/03/1988", "08/07/1988", "16/07/2009", "01/01/1990"],
+		correct: [1],
+		revealText: "08/07/1988",
+		revealIcons: ["🎉", "✨", "🎊", "🌟"]
+	  },
+	  {
+		type: "single",
+		effect: "salary",
+		question: "CBNV VietinBank nhận lương vào những ngày nào hằng tháng?",
+		options: ["Ngày 01 và 15", "Ngày 05 và 20", "Ngày 10 và 25", "Cuối tháng một lần"],
+		correct: [1],
+		revealText: "Ngày 05 và 20",
+		revealIcons: ["💸", "🪙", "💰", "✨"]
+	  },
+	  {
+		type: "single",
+		effect: "birthday",
+		question: "Đến sinh nhật, CBNV VietinBank được hưởng quyền lợi nào?",
+		options: [
+		  "Nghỉ 01 ngày hưởng nguyên lương và nhận 500.000đ từ Công đoàn",
+		  "Được nghỉ 10 ngày liên tiếp",
+		  "Được tự chọn tăng lương trong tháng sinh nhật",
+		  "Được miễn toàn bộ KPI trong tháng sinh nhật"
+		],
+		correct: [0],
+		revealText: "Nghỉ 01 ngày hưởng nguyên lương và nhận 500.000đ từ Công đoàn",
+		revealIcons: ["🎁", "🎂", "🎈", "✨"]
+	  },
+	  {
+		type: "multi",
+		effect: "digital",
+		question: "4 trụ cột của Hành trình Chuyển đổi số toàn diện tại VietinBank là gì?",
+		options: [
+		  "Số hóa",
+		  "Dữ liệu",
+		  "Công nghệ",
+		  "Con người & Tổ chức",
+		  "Truyền thông",
+		  "Bán hàng",
+		  "Sản phẩm",
+		  "Kiểm tra"
+		],
+		correct: [0, 1, 2, 3],
+		revealText: "Số hóa, Dữ liệu, Công nghệ, Con người & Tổ chức",
+		revealIcons: ["🚀", "⚡", "💡", "🌐"]
+	  },
+	  {
+		type: "single",
+		effect: "health",
+		question: "Quyền lợi nào giúp CBNV yên tâm hơn khi chăm sóc sức khỏe?",
+		options: [
+		  "Khám sức khỏe định kỳ hằng năm và Bảo hiểm VietinBank Insurance",
+		  "Được miễn mọi deadline khi thấy mệt",
+		  "Tự kê đơn thuốc cho cả phòng",
+		  "Nghỉ ốm không cần thông báo"
+		],
+		correct: [0],
+		revealText: "Khám sức khỏe định kỳ hằng năm và Bảo hiểm VietinBank Insurance",
+		revealIcons: ["🛡️", "💙", "🏥", "✨"]
+	  },
+	  {
+		type: "multi",
+		effect: "values",
+		question: "Đâu là 5 giá trị cốt lõi của VietinBank?",
+		options: [
+		  "Chính trực",
+		  "Trí tuệ",
+		  "Tận tâm",
+		  "Thấu cảm",
+		  "Thích ứng",
+		  "Tốc độ",
+		  "Dẫn đầu",
+		  "Bền bỉ",
+		  "Kỷ luật",
+		  "May mắn"
+		],
+		correct: [0, 1, 2, 3, 4],
+		revealText: "Chính trực, Trí tuệ, Tận tâm, Thấu cảm, Thích ứng",
+		revealIcons: ["⭐", "✨", "🌟", "💫"]
+	  },
+	  {
+		type: "single",
+		effect: "logo",
+		question: "Biểu tượng trong logo VietinBank gợi hình ảnh nào sau đây?",
+		options: ["Hình trái đất", "Hình quả bóng", "Hình đồng xu", "Hình mặt trời"],
+		correct: [2],
+		revealText: "Hình đồng xu",
+		revealIcons: ["🪙", "✨", "🔵", "🔴"]
+	  },
+	  {
+		type: "single",
+		effect: "portal",
+		question: "Khi cần tra cứu các văn bản/chính sách nội bộ của VietinBank, newbie nên vào trang nào?",
+		options: [
+		  "http://VietinBank-ps – Trang quản lý thông tin nhân sự",
+		  "http://intranet.vietinbank.vn – Cổng thông tin nội bộ VietinBank",
+		  "http://kpi.vietinbank.vn – Chương trình đánh giá cán bộ theo KPI",
+		  "http://www.vietinbank.edu.vn – Đào tạo trực tuyến"
+		],
+		correct: [1],
+		revealText: "http://intranet.vietinbank.vn",
+		revealNote: "Admin có thể giới thiệu nhanh: VietinBank-ps dùng cho thông tin nhân sự; KPI dùng cho đánh giá cán bộ; VietinBank Edu dùng cho đào tạo trực tuyến.",
+		revealIcons: ["🔎", "🌐", "✨", "📌"]
+	  },
+	  {
+		type: "multi",
+		effect: "risk",
+		question: "Đâu là những việc KHÔNG nên làm để tránh rủi ro trong công việc?",
+		options: [
+		  "Cho người khác mượn tài khoản/mật khẩu",
+		  "Ghi mật khẩu ra giấy note hoặc nơi dễ nhìn thấy",
+		  "Gửi thông tin khách hàng qua email cá nhân khi chưa được phê duyệt",
+		  "Vứt tài liệu nội bộ mà không tiêu hủy đúng quy định",
+		  "Khóa màn hình máy tính khi rời khỏi chỗ ngồi"
+		],
+		correct: [0, 1, 2, 3],
+		revealText: "Cho mượn tài khoản/mật khẩu; ghi mật khẩu ra giấy note; gửi thông tin KH qua email cá nhân; vứt tài liệu nội bộ không đúng quy định",
+		revealIcons: ["⚠️", "🚨", "🛡️", "🔐"]
+	  },
+	  {
+		type: "single",
+		effect: "final",
+		question: "Hành trình Chuyển đổi số của VietinBank được viết tắt bằng gì?",
+		options: [
+		  "D365",
+		  "OneBank",
+		  "X01",
+		  "V-Digital"
+		],
+		correct: [2],
+		revealText: "X01",
+		revealIcons: ["🚀", "⚡", "🌟", "💡"]
+	  }
+	];
 
     /************************************************************
      * 3. BIẾN HỆ THỐNG
