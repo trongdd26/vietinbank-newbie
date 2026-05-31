@@ -352,6 +352,18 @@
       box-shadow: 0 14px 28px rgba(255,157,47,0.25);
     }
 
+    .btn.star.active {
+      outline: 3px solid #c47b00;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px rgba(255,157,47,0.30), 0 14px 28px rgba(255,157,47,0.25);
+    }
+
+    .btn.ghost.active {
+      outline: 3px solid var(--navy);
+      outline-offset: 3px;
+      background: rgba(16,42,92,0.15);
+    }
+
     .meta-row {
       display: flex;
       gap: 10px;
@@ -871,7 +883,7 @@
     const CONFIG = {
       roomCode: "VTB2026",
       adminPin: "8888",
-      timeLimitSeconds: 20,
+      timeLimitSeconds: 15,
       starChoiceSeconds: 5,
       maxStars: 3,
 
@@ -1490,6 +1502,7 @@
     function renderStarChoice(player) {
       const qIndex = state.questionIndex;
       const used = didUseStar(player, qIndex);
+      const notUsed = !!(player?.starChoices && player.starChoices[qIndex] === false);
       const left = starLeft(player);
       const canUse = left > 0 || used;
 
@@ -1513,10 +1526,10 @@
             </div>
 
             <div class="star-actions">
-              <button class="btn star" onclick="setStarChoice(true)" ${canUse ? "" : "disabled"}>
+              <button class="btn star ${used ? "active" : ""}" onclick="setStarChoice(true)" ${canUse ? "" : "disabled"}>
                 ⭐ Dùng sao
               </button>
-              <button class="btn ghost" onclick="setStarChoice(false)">
+              <button class="btn ghost ${notUsed ? "active" : ""}" onclick="setStarChoice(false)">
                 Không dùng
               </button>
             </div>
@@ -1931,20 +1944,6 @@
 
             ${(game.phase === "lobby" || game.phase === "answer") ? `
               <div style="margin:14px 0 0;">
-                <label style="font-weight:850;color:var(--navy);font-size:14px;display:block;margin-bottom:6px;">
-                  Thời gian mỗi câu (giây)
-                </label>
-                <div style="display:flex;gap:10px;align-items:center;">
-                  <input
-                    id="timeLimitInput"
-                    type="number"
-                    min="5"
-                    max="120"
-                    value="${game.timeLimitSeconds || CONFIG.timeLimitSeconds}"
-                    style="width:90px;"
-                  />
-                  <button class="btn ghost" onclick="updateTimeLimitSeconds()">Lưu</button>
-                </div>
               </div>
             ` : ""}
 
