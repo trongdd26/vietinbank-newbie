@@ -1947,10 +1947,6 @@
 
               <button class="btn danger" onclick="resetRoom()">Reset điểm & phòng chơi</button>
             </div>
-
-            <p class="small-note">
-              Mã phòng: <b>${CONFIG.roomCode}</b>. Link admin: thêm <b>?host=1</b> vào cuối link.
-            </p>
           </div>
 
           <div class="card">
@@ -2066,20 +2062,10 @@
       const ok = confirm("Reset toàn bộ điểm, sao và đưa game về phòng chờ?");
       if (!ok) return;
 
-      const updates = {
-        game: defaultGameState()
-      };
-
-      Object.keys(players).forEach((id) => {
-        updates[`players/${id}/score`] = 0;
-        updates[`players/${id}/correct`] = 0;
-        updates[`players/${id}/totalTimeMs`] = 0;
-        updates[`players/${id}/starsLeft`] = CONFIG.maxStars;
-        updates[`players/${id}/starChoices`] = {};
-        updates[`players/${id}/answers`] = {};
+      await roomRef.set({
+        game: defaultGameState(),
+        players: null
       });
-
-      await roomRef.update(updates);
     }
 
     async function applyMissedStarPenaltiesForAll() {
